@@ -1,12 +1,18 @@
 class Solution:
-    def longestCommonPrefix(self, strs: List[str]) -> str:
+    def longestCommonPrefix(self, strs: list[str]) -> str:
         if not strs:
             return ""
-        for i in range(len(strs[0])):
-            char = strs[0][i]
-
-            for string in strs[1:]:
-                if i == len(string) or string[i] != char:
-                    return strs[0][:i]
+            
+        # Sort the strings lexicographically
+        strs.sort()
         
-        return strs[0]
+        # Compare the first and last string
+        first = strs[0]
+        last = strs[-1]
+        
+        i = 0
+        while i < len(first) and i < len(last) and first[i] == last[i]:
+            i += 1
+            
+        return first[:i]
+
